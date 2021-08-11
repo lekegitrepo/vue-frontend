@@ -31,20 +31,21 @@ export default {
     return {
       lastValidIndex: -1,
       currentTab: 'feautures',
-      items: [
-        { name: 'Features', value: 'feautures' },
-        { name: 'Delivery', value: 'delivery' },
-        { name: 'Shipping', value: 'shipping' },
-        { name: 'About', value: 'about' },
-      ],
+      // items: [
+      //   { name: 'Features', value: 'feautures' },
+      //   { name: 'Delivery', value: 'delivery' },
+      //   { name: 'Shipping', value: 'shipping' },
+      //   { name: 'About', value: 'about' },
+      // ],
     };
   },
   computed: {
     activeIndex() {
       let index = this.tabs.findIndex((tab) => tab.value === this.value);
-      // if (index !== -1) {
-      //   this.lastValidIndex = index;
-      // }
+      if (index !== -1) {
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.lastValidIndex = index;
+      }
       return index;
     },
     cssClasses() {
@@ -71,23 +72,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import 'bourbon';
-
+<style scoped>
 @import 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400';
 
 /* colors */
-$blue: #428bff;
+/* $blue: #428bff;
 $red: #ff4a53;
 $dark: #333;
 
 $accent: $blue;
 $accent-inactive: desaturate($accent, 85%);
-$secondary: $accent-inactive;
-
-body {
-  background-color: #fff;
-}
+$secondary: $accent-inactive; */
 
 .tabs {
   position: relative;
@@ -96,82 +91,77 @@ body {
   margin: 50px auto;
   border-radius: 5px;
   background: #f3f3f3;
-
-  > ul {
-    list-style-type: none;
-    padding-left: 0;
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
-    li {
-      box-sizing: border-box;
-      flex: 1;
-      text-align: center;
-
-      label {
-        font-family: 'Montserrat';
-        font-size: 18px;
-        color: #a8a8a8;
-        transition: all 0.3s ease-in-out;
-        color: $secondary;
-        height: 40px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: block;
-        cursor: pointer;
-        transition: all 0.2s ease-in-out;
-        white-space: nowrap;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        -webkit-touch-callout: none;
-        @include user-select(none);
-
-        input {
-          display: none;
-          &:checked ~ span {
-            color: #428bff;
-          }
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-          outline: 0;
-          color: #5a5a5a;
-        }
-      }
-    }
-  }
-
-  > .slider {
-    position: relative;
-    z-index: 0;
-    width: calc(100% / var(--tabs-count));
-    transform: translateX(calc(100% * var(--tab-index)));
-    transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
-    > .indicator {
-      max-width: 100%;
-      margin: 0 auto;
-      background: #fff;
-      width: 100%;
-      height: 40px;
-      bottom: 0;
-      position: absolute;
-      z-index: -1;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 7px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      transition: transform 0.3s;
-    }
-  }
-  &.unselected > .slider {
-    opacity: 0;
-    visibility: hidden;
-  }
+}
+.tabs.unselected > .slider {
+  opacity: 0;
+  visibility: hidden;
+}
+.tabs > ul {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.tabs > ul li {
+  box-sizing: border-box;
+  flex: 1;
+  text-align: center;
+}
+.tabs > ul li label {
+  font-family: 'Montserrat';
+  font-size: 18px;
+  color: #a8a8a8;
+  transition: all 0.3s ease-in-out;
+  color: #428bff;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* -webkit-touch-callout: none;
+  @include user-select(none); */
+}
+.tabs > ul li label input {
+  display: none;
+}
+label input:checked ~ span {
+  color: #428bff;
+}
+.tabs > ul li label:hover,
+.tabs > ul li label:focus,
+.tabs > ul li label:active {
+  outline: 0;
+  color: #5a5a5a;
+}
+.tabs > .slider {
+  position: relative;
+  z-index: 0;
+  width: calc(100% / var(--tabs-count));
+  transform: translateX(calc(100% * var(--tab-index)));
+  transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+}
+.tabs > .slider > .indicator {
+  max-width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  width: 100%;
+  height: 40px;
+  bottom: 0;
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 7px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: transform 0.3s;
 }
 </style>
