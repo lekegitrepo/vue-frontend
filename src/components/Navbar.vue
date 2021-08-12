@@ -1,18 +1,19 @@
 <template id="v-tabs">
   <div class="tabs" :class="cssClasses" :style="cssVars">
-    <ul>
-      <li :title="tab.name" v-for="tab of tabs" :key="tab.name">
+    <span class="tab-wrapper">
+      <span
+        class="tab mx-4 px-2"
+        :title="tab.name"
+        v-for="tab of tabs"
+        :key="tab.name"
+      >
         <label role="button" v-on:click="unselect($event, tab)">
-          <input
-            type="radio"
-            :value="tab.value"
-            v-model="value"
-            v-on:input="$emit('input', tab.value)"
-          />
-          <span>{{ tab.name }}</span>
+          <!-- <input type="radio" :value="tab.value" v-model="value" /> -->
+          <button @click="handleClick(tab.value)">{{ tab.name }}</button>
+          <!-- <span>{{ tab.name }}</span> -->
         </label>
-      </li>
-    </ul>
+      </span>
+    </span>
     <div class="slider">
       <div class="indicator"></div>
     </div>
@@ -22,15 +23,15 @@
 <script>
 export default {
   props: {
-    value: null,
     tabs: Array,
     allowUnselect: Boolean,
   },
   template: '#v-tabs',
   data() {
     return {
-      lastValidIndex: -1,
+      lastValidIndex: 0,
       currentTab: 'feautures',
+      value: null,
       // items: [
       //   { name: 'Features', value: 'feautures' },
       //   { name: 'Delivery', value: 'delivery' },
@@ -68,6 +69,9 @@ export default {
         this.$emit('input', null);
       }
     },
+    handleClick(value) {
+      this.value = value;
+    },
   },
 };
 </script>
@@ -93,10 +97,10 @@ $secondary: $accent-inactive; */
   background: #f3f3f3;
 }
 .tabs.unselected > .slider {
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  /* visibility: hidden; */
 }
-.tabs > ul {
+.tabs > .tab-wrapper {
   list-style-type: none;
   padding-left: 0;
   display: flex;
@@ -108,12 +112,12 @@ $secondary: $accent-inactive; */
   position: relative;
   z-index: 1;
 }
-.tabs > ul li {
+.tabs > .tab-wrapper .tab {
   box-sizing: border-box;
   flex: 1;
   text-align: center;
 }
-.tabs > ul li label {
+.tabs > .tab-wrapper .tab label {
   font-family: 'Montserrat';
   font-size: 18px;
   color: #a8a8a8;
@@ -132,15 +136,15 @@ $secondary: $accent-inactive; */
   /* -webkit-touch-callout: none;
   @include user-select(none); */
 }
-.tabs > ul li label input {
+.tabs > .tab-wrapper .tab label input {
   display: none;
 }
 label input:checked ~ span {
   color: #428bff;
 }
-.tabs > ul li label:hover,
-.tabs > ul li label:focus,
-.tabs > ul li label:active {
+.tabs > .tab-wrapper .tab label:hover,
+.tabs > .tab-wrapper .tab label:focus,
+.tabs > .tab-wrapper .tab label:active {
   outline: 0;
   color: #5a5a5a;
 }
