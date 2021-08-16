@@ -31,6 +31,12 @@ export default {
       },
     };
   },
+  created() {
+    this.checkSignIn();
+  },
+  updated() {
+    this.checkSignIn();
+  },
   methods: {
     handleSubmit() {
       this.$http.plain
