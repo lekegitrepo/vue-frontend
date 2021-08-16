@@ -32,7 +32,36 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {},
+    handleSubmit() {
+      this.$http.plain
+        .post('/signin', { email: this.email, password: this.password })
+        .then((response) => this.signinSuccessful(response))
+        .catch((error) => this.signinFailed(error));
+    },
+
+    signinSuccessful(response) {
+      if (!response.data.csrf) {
+        this.signinFailed(response);
+        return;
+      }
+      localStorage.csrf = response.data.csrf;
+      localStorage.signedIn = true;
+      //this.error = ''
+      this.$router.replace('/coders');
+    },
+
+    signinFailed(error) {
+      //this.error = (error.response && error.response.data && error.response.data.error) || ''
+      console.log(error);
+      delete localStorage.csrf;
+      delete localStorage.signedIn;
+    },
+
+    checkSignIn() {
+      if (localStorage.signedIn) {
+        this.$router.replace('/coders');
+      }
+    },
   },
 };
 </script>
