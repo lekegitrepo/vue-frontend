@@ -8,9 +8,7 @@
         :key="tab.name"
       >
         <label role="button" v-on:click="unselect($event, tab)">
-          <!-- <input type="radio" :value="tab.value" v-model="value" /> -->
           <button @click="handleClick(tab.value)">{{ tab.name }}</button>
-          <!-- <span>{{ tab.name }}</span> -->
         </label>
       </span>
     </span>
