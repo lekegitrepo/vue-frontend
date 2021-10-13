@@ -11,7 +11,7 @@
           v-model="password"
           type="password"
           name="password"
-          placeholder="Passowrd"
+          placeholder="Password"
         />
       </div>
       <div>
