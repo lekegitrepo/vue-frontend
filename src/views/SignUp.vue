@@ -35,6 +35,10 @@
       <div>
         <button type="submit">Sign Up</button>
       </div>
+      <div>
+        <span>Already has an account? </span>
+        <router-link to="/login">click here to Login</router-link>
+      </div>
     </form>
   </div>
 </template>

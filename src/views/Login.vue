@@ -15,7 +15,10 @@
         />
       </div>
       <div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
+      </div>
+      <div>
+        <router-link to="/signup">SignUp</router-link>
       </div>
     </form>
   </div>
