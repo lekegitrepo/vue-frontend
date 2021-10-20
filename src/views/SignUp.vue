@@ -4,7 +4,7 @@
       <div>
         <label for="username">Username</label>
         <input
-          v-model="userName"
+          v-model="form.userName"
           type="text"
           name="username"
           placeholder="Username"
@@ -12,12 +12,17 @@
       </div>
       <div>
         <label for="email">Email</label>
-        <input v-model="email" type="email" name="email" placeholder="Email" />
+        <input
+          v-model="form.email"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
       </div>
       <div>
         <label for="password">Password</label>
         <input
-          v-model="password"
+          v-model="form.password"
           type="password"
           name="password"
           placeholder="Passowrd"
@@ -26,7 +31,7 @@
       <div>
         <label for="password_confirmation">Password Confirmation</label>
         <input
-          v-model="password_confirmaion"
+          v-model="form.password_confirmaion"
           type="password"
           name="password_confirmation"
           placeholder="Passowrd Confirmation"
@@ -45,7 +50,7 @@
 
 <script>
 export default {
-  data: function() {
+  data() {
     return {
       form: {
         userName: '',
@@ -56,7 +61,40 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {},
+    handleSubmit() {
+      this.$http.plain
+        .post('/signup', {
+          email: this.form.email,
+          password: this.form.password,
+          password_confirmation: this.form.password_confirmation,
+        })
+        .then((response) => this.signinSuccessful(response))
+        .catch((error) => this.signinFailed(error));
+    },
+
+    signinSuccessful(response) {
+      if (!response.data.csrf) {
+        this.signinFailed(response);
+        return;
+      }
+      localStorage.csrf = response.data.csrf;
+      localStorage.signedIn = true;
+      //this.error = ''
+      this.$router.replace('/coders');
+    },
+
+    signinFailed(error) {
+      //this.error = (error.response && error.response.data && error.response.data.error) || ''
+      console.log(error);
+      delete localStorage.csrf;
+      delete localStorage.signedIn;
+    },
+
+    checkSignIn() {
+      if (localStorage.signedIn) {
+        this.$router.replace('/coders');
+      }
+    },
   },
 };
 </script>
