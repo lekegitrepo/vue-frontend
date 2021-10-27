@@ -10,8 +10,6 @@
 <script>
 /* eslint-disable */
 
-import axios from 'axios';
-
 export default {
   data() {
     return {
@@ -22,7 +20,7 @@ export default {
     };
   },
   created() {
-    axios
+    this.$http
       .get('http://localhost:3000/contacts')
       .then((response) => {
         console.log('This is created response data ', response.data);

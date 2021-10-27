@@ -3,12 +3,17 @@
     <form @submit.prevent="handleSubmit">
       <div>
         <label for="email">Email</label>
-        <input v-model="email" type="email" name="email" placeholder="Email" />
+        <input
+          v-model="form.email"
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
       </div>
       <div>
         <label for="password">Password</label>
         <input
-          v-model="password"
+          v-model="form.password"
           type="password"
           name="password"
           placeholder="Password"
@@ -43,7 +48,10 @@ export default {
   methods: {
     handleSubmit() {
       this.$http.plain
-        .post('/signin', { email: this.email, password: this.password })
+        .post('/signin', {
+          email: this.form.email,
+          password: this.form.password,
+        })
         .then((response) => this.signinSuccessful(response))
         .catch((error) => this.signinFailed(error));
     },
