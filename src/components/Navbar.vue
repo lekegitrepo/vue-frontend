@@ -24,11 +24,11 @@ export default {
     tabs: Array,
     allowUnselect: Boolean,
   },
-  template: '#v-tabs',
+  template: "#v-tabs",
   data() {
     return {
       lastValidIndex: 0,
-      currentTab: 'feautures',
+      currentTab: "feautures",
       value: null,
       // items: [
       //   { name: 'Features', value: 'feautures' },
@@ -54,8 +54,8 @@ export default {
     },
     cssVars() {
       return {
-        '--tabs-count': this.tabs.length,
-        '--tab-index': this.lastValidIndex,
+        "--tabs-count": this.tabs.length,
+        "--tab-index": this.lastValidIndex,
       };
     },
   },
@@ -64,7 +64,7 @@ export default {
       if (!this.allowUnselect) return;
       if (tab.value === this.value) {
         e.preventDefault();
-        this.$emit('input', null);
+        this.$emit("input", null);
       }
     },
     handleClick(value) {
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style scoped>
-@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400';
+@import "https://fonts.googleapis.com/css?family=Montserrat:400,700|Raleway:300,400";
 
 /* colors */
 /* $blue: #428bff;
@@ -116,7 +116,7 @@ $secondary: $accent-inactive; */
   text-align: center;
 }
 .tabs > .tab-wrapper .tab label {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 18px;
   color: #a8a8a8;
   transition: all 0.3s ease-in-out;
