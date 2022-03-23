@@ -17,23 +17,23 @@
         <transition name="fade">
           <div v-if="isUserModalOpened" class="absolute top-12 right-1">
             <span>Your Account</span>
-            <div>
+            <div class="avatar">
               <div>avatar</div>
               <div>user roles</div>
             </div>
-            <div>
-              <div>
+            <div class="profile-menu">
+              <div class="dropdown">
                 <div>dropdown1</div>
                 <div>dropdown2</div>
               </div>
 
-              <div>
+              <div class="menu-container">
                 <div>
                   <span>logout</span>
                   <span>profile</span>
                 </div>
               </div>
-              <div>
+              <div class="preference">
                 <div>
                   <span>appearance</span>
                 </div>
@@ -85,5 +85,30 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.avatar {
+  background-color: blueviolet;
+  width: 200px;
+  height: 75px;
+}
+.profile-menu {
+  background-color: bisque;
+  width: 200px;
+  height: 300px;
+}
+.menu-container{
+  width: 200px;
+  height: 100px;
+}
+.dropdown {
+  background-color: blue;
+  width: 200px;
+  height: 100px;
+}
+.preference {
+  background-color: bluev;
+  width: 200px;
+  height: 150px;
 }
 </style>
