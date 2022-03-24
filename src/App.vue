@@ -16,31 +16,65 @@
         </button>
         <transition name="fade">
           <div v-if="isUserModalOpened" class="absolute top-12 right-1">
-            <span>Your Account</span>
-            <div class="avatar">
-              <div>avatar</div>
-              <div>user roles</div>
+            <div v-if="!isSubThemeModalOpened && !isSubLangModalOpened">
+              <span>Your Account</span>
+              <div class="avatar">
+                <div>avatar</div>
+                <div>user roles</div>
+              </div>
             </div>
-            <div class="profile-menu">
-              <div class="dropdown">
-                <div>dropdown1</div>
-                <div>dropdown2</div>
-              </div>
+            <transition name="expanded">
+              <div
+                class="profile-menu"
+                v-if="!isSubThemeModalOpened && !isSubLangModalOpened"
+              >
+                <div class="inner-menu">
+                  <div class="dropdown">
+                    <div>dropdown1</div>
+                    <div>dropdown2</div>
+                  </div>
 
-              <div class="menu-container">
-                <div>
-                  <span>logout</span>
-                  <span>profile</span>
+                  <div class="menu-container">
+                    <div class="flex flex-col">
+                      <span>logout</span>
+                      <span>profile</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="preference">
-                <div>
-                  <span>appearance</span>
+            </transition>
+            <div>
+              <transition name="slide-up">
+                <div
+                  v-if="isSubThemeModalOpened"
+                  @click="isSubThemeModalOpened = !isSubThemeModalOpened"
+                  class="mini-modal"
+                >
+                  <span>Sub Modal theme</span>
                 </div>
-                <div>
-                  language
+              </transition>
+              <transition name="slide-up">
+                <div
+                  v-if="isSubLangModalOpened"
+                  @click="isSubLangModalOpened = !isSubLangModalOpened"
+                  class="mini-modal"
+                >
+                  <span>Sub Modal Language</span>
                 </div>
-              </div>
+              </transition>
+              <transition name="fade">
+                <div
+                  class="preference"
+                  v-if="!isSubThemeModalOpened && !isSubLangModalOpened"
+                >
+                  <div @click="isSubThemeModalOpened = !isSubThemeModalOpened">
+                    <span>theme</span>
+                  </div>
+                  <div @click="isSubLangModalOpened = !isSubLangModalOpened">
+                    <span>language</span>
+                  </div>
+                </div>
+              </transition>
             </div>
           </div>
         </transition>
@@ -66,6 +100,8 @@ export default {
   data() {
     return {
       isUserModalOpened: false,
+      isSubThemeModalOpened: false,
+      isSubLangModalOpened: false,
     };
   },
   methods: {
@@ -87,6 +123,38 @@ export default {
   opacity: 0;
 }
 
+/* .expanded-enter-active,
+.expanded-leave-active {
+  transition: opacity 0.5s;
+}
+.expanded-enter,
+.expanded-leave-to {
+  max-height: 40%;
+} */
+
+.expanded-enter {
+  max-height: 0;
+  opacity: 0;
+}
+.expanded-enter-to {
+  max-height: 31rem;
+  opacity: 1;
+}
+.expanded-enter-active,
+.expanded-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.8s;
+}
+.slide-up-enter,
+.slide-up-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
 .avatar {
   background-color: blueviolet;
   width: 200px;
@@ -97,17 +165,22 @@ export default {
   width: 200px;
   height: 300px;
 }
-.menu-container{
+.menu-container {
   width: 200px;
   height: 100px;
 }
-.dropdown {
+/* .dropdown {
   background-color: blue;
+  width: 200px;
+  height: 100px;
+} */
+.mini-modal {
+  background-color: blanchedalmond;
   width: 200px;
   height: 100px;
 }
 .preference {
-  background-color: bluev;
+  background-color: rebeccapurple;
   width: 200px;
   height: 150px;
 }
