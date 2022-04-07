@@ -16,14 +16,16 @@
         </button>
         <transition name="fade">
           <div v-if="isUserModalOpened" class="absolute top-12 right-1">
-            <div v-if="!isSubThemeModalOpened && !isSubLangModalOpened">
-              <span>Your Account</span>
-              <div class="avatar">
-                <div>avatar</div>
-                <div>user roles</div>
+            <transition name="slide">
+              <div v-if="!isSubThemeModalOpened && !isSubLangModalOpened">
+                <span>Your Account</span>
+                <div class="avatar">
+                  <div>avatar</div>
+                  <div>user roles</div>
+                </div>
               </div>
-            </div>
-            <transition name="expanded">
+            </transition>
+            <transition name="slide">
               <div
                 class="profile-menu"
                 v-if="!isSubThemeModalOpened && !isSubLangModalOpened"
@@ -44,37 +46,31 @@
               </div>
             </transition>
             <div>
-              <transition name="slide-up">
-                <div
-                  v-if="isSubThemeModalOpened"
-                  @click="isSubThemeModalOpened = !isSubThemeModalOpened"
-                  class="mini-modal"
-                >
-                  <span>Sub Modal theme</span>
+              <div
+                v-if="isSubThemeModalOpened"
+                @click="isSubThemeModalOpened = !isSubThemeModalOpened"
+                class="mini-modal"
+              >
+                <span>Sub Modal theme</span>
+              </div>
+              <div
+                v-if="isSubLangModalOpened"
+                @click="isSubLangModalOpened = !isSubLangModalOpened"
+                class="mini-modal"
+              >
+                <span>Sub Modal Language</span>
+              </div>
+              <div
+                class="preference"
+                v-if="!isSubThemeModalOpened && !isSubLangModalOpened"
+              >
+                <div @click="isSubThemeModalOpened = !isSubThemeModalOpened">
+                  <span>theme</span>
                 </div>
-              </transition>
-              <transition name="slide-up">
-                <div
-                  v-if="isSubLangModalOpened"
-                  @click="isSubLangModalOpened = !isSubLangModalOpened"
-                  class="mini-modal"
-                >
-                  <span>Sub Modal Language</span>
+                <div @click="isSubLangModalOpened = !isSubLangModalOpened">
+                  <span>language</span>
                 </div>
-              </transition>
-              <transition name="fade">
-                <div
-                  class="preference"
-                  v-if="!isSubThemeModalOpened && !isSubLangModalOpened"
-                >
-                  <div @click="isSubThemeModalOpened = !isSubThemeModalOpened">
-                    <span>theme</span>
-                  </div>
-                  <div @click="isSubLangModalOpened = !isSubLangModalOpened">
-                    <span>language</span>
-                  </div>
-                </div>
-              </transition>
+              </div>
             </div>
           </div>
         </transition>
@@ -123,15 +119,6 @@ export default {
   opacity: 0;
 }
 
-/* .expanded-enter-active,
-.expanded-leave-active {
-  transition: opacity 0.5s;
-}
-.expanded-enter,
-.expanded-leave-to {
-  max-height: 40%;
-} */
-
 .expanded-enter {
   max-height: 0;
   opacity: 0;
@@ -145,14 +132,21 @@ export default {
   transition: all 0.3s ease;
 }
 
-.slide-up-enter-active,
-.slide-up-leave-active {
-  transition: all 0.8s;
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.6s ease-out;
 }
-.slide-up-enter,
-.slide-up-leave-to {
-  transform: translateY(100px);
+
+.slide-enter,
+.slide-leave-to {
+  max-height: 0;
   opacity: 0;
+}
+
+.slide-enter-to,
+.slide-leave {
+  max-height: 300px;
+  opacity: 1;
 }
 
 .avatar {
