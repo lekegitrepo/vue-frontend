@@ -25,16 +25,16 @@
           v-model="form.password"
           type="password"
           name="password"
-          placeholder="Passowrd"
+          placeholder="Password"
         />
       </div>
       <div>
         <label for="password_confirmation">Password Confirmation</label>
         <input
-          v-model="form.password_confirmaion"
+          v-model="form.password_confirmation"
           type="password"
           name="password_confirmation"
-          placeholder="Passowrd Confirmation"
+          placeholder="Password Confirmation"
         />
       </div>
       <div>
@@ -53,46 +53,46 @@ export default {
   data() {
     return {
       form: {
-        userName: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        userName: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
       },
     };
   },
   methods: {
     handleSubmit() {
       this.$http.plain
-        .post('/signup', {
+        .post("api/users", {
           email: this.form.email,
           password: this.form.password,
           password_confirmation: this.form.password_confirmation,
         })
-        .then((response) => this.signinSuccessful(response))
-        .catch((error) => this.signinFailed(error));
+        .then((response) => this.signInSuccessful(response))
+        .catch((error) => this.signInFailed(error));
     },
 
-    signinSuccessful(response) {
+    signInSuccessful(response) {
       if (!response.data.csrf) {
-        this.signinFailed(response);
+        this.signInFailed(response);
         return;
       }
       localStorage.csrf = response.data.csrf;
       localStorage.signedIn = true;
       //this.error = ''
-      this.$router.replace('/coders');
+      this.$router.replace("/coders");
     },
 
-    signinFailed(error) {
+    signInFailed(error) {
       //this.error = (error.response && error.response.data && error.response.data.error) || ''
       console.log(error);
       delete localStorage.csrf;
       delete localStorage.signedIn;
     },
 
-    checkSignIn() {
+    checksignIn() {
       if (localStorage.signedIn) {
-        this.$router.replace('/coders');
+        this.$router.replace("/coders");
       }
     },
   },
