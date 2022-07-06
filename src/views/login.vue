@@ -1,6 +1,7 @@
 <template>
-  <div class="h-full login">
-    <div class="flex items-center justify-center h-full">
+  <div class="h-full login relative">
+    <!-- <div class="bg-mask h-full opacity-70 z-10 absolute w-full" /> -->
+    <div class="flex items-center justify-center h-full z-20">
       <div>
         <h3>Learn to Code by Watching others</h3>
         <div>
@@ -10,7 +11,7 @@
         </div>
       </div>
 
-      <div>
+      <div class="bg-white">
         <form @submit.prevent="handleSubmit">
           <div>
             <label for="email">Email</label>
@@ -102,5 +103,8 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-origin: content-box;
+}
+.bg-mask {
+  background-color: #cd3434;
 }
 </style>
