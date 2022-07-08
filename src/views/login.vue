@@ -1,43 +1,46 @@
 <template>
-  <div class="bg-mask h-full opacity-70 z-10 w-full">
+  <div class="bg-mask h-full opacity-80 z-10 w-full">
     <div class="h-full login relative">
-      <div class="flex items-center justify-center h-full z-20">
-        <div>
-          <h3>Learn to Code by Watching others</h3>
-          <div>
+      <div class="flex items-center h-full z-20">
+        <div class="flex flex-col items-center justify-center">
+          <div>Learn to Code by Watching others</div>
+          <div class="w-2/6">
             See how experienced developers solve problems in real-time. Watching
             scripted tutorials is great, but understanding how developers think
             is invaluable
           </div>
         </div>
 
-        <div class="bg-white">
-          <form @submit.prevent="handleSubmit">
-            <div>
-              <label for="email">Email</label>
-              <input
-                v-model="form.email"
-                type="email"
-                name="email"
-                placeholder="Email"
-              />
-            </div>
-            <div>
-              <label for="password">Password</label>
-              <input
-                v-model="form.password"
-                type="password"
-                name="password"
-                placeholder="Password"
-              />
-            </div>
-            <div>
-              <button type="submit">Login</button>
-            </div>
-            <div>
-              <router-link to="/signup">SignUp</router-link>
-            </div>
-          </form>
+        <div class="flex flex-col items-center w-4/6">
+          <div>Try it free 7 days then $20/mo. thereafter</div>
+          <div class="bg-white">
+            <form @submit.prevent="handleSubmit">
+              <div>
+                <label for="email">Email</label>
+                <input
+                  v-model="form.email"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                />
+              </div>
+              <div>
+                <label for="password">Password</label>
+                <input
+                  v-model="form.password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div>
+                <button type="submit">Login</button>
+              </div>
+              <div>
+                <router-link to="/signup">SignUp</router-link>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
