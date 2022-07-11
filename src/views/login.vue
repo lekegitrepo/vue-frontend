@@ -2,9 +2,11 @@
   <div class="bg-mask h-full opacity-80 z-10 w-full">
     <div class="h-full login relative">
       <div class="flex items-center h-full z-20">
-        <div class="flex flex-col items-center justify-center">
-          <div>Learn to Code by Watching others</div>
-          <div class="w-2/6">
+        <div class="flex flex-col items-center justify-center text-white">
+          <div class="flex flex-col p-4 md:text-5xl font-bold">
+            <span>Learn to Code by</span> <span>Watching others</span>
+          </div>
+          <div class="text-lg md:w-4/6 text-left">
             See how experienced developers solve problems in real-time. Watching
             scripted tutorials is great, but understanding how developers think
             is invaluable
