@@ -1,47 +1,53 @@
 <template>
   <div class="bg-mask h-full opacity-80 z-10 w-full">
-    <div class="h-full login relative">
-      <div class="flex items-center h-full z-20">
-        <div class="flex flex-col items-center justify-center text-white">
-          <div class="flex flex-col p-4 md:text-5xl font-bold">
-            <span>Learn to Code by</span> <span>Watching others</span>
-          </div>
-          <div class="text-lg md:w-4/6 text-left">
-            See how experienced developers solve problems in real-time. Watching
-            scripted tutorials is great, but understanding how developers think
-            is invaluable
+    <div class="h-full login">
+      <div class="flex flex-col md:flex-row items-center h-full z-20">
+        <div class="flex justify-center text-white  md:w-3/6">
+          <div class="md:w-1/2">
+            <div class="flex flex-col md:text-5xl font-bold">
+              <span>Learn to Code by</span> <span>Watching others</span>
+            </div>
+            <div class="text-lg">
+              <span>
+                See how experienced developers solve problems in real-time.
+              </span>
+              <span>scripted tutorials is great, but understanding how</span>
+              <span>developers think is invaluable</span>
+            </div>
           </div>
         </div>
 
-        <div class="flex flex-col items-center w-4/6">
-          <div>Try it free 7 days then $20/mo. thereafter</div>
-          <div class="bg-white">
-            <form @submit.prevent="handleSubmit">
-              <div>
-                <label for="email">Email</label>
-                <input
-                  v-model="form.email"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                />
-              </div>
-              <div>
-                <label for="password">Password</label>
-                <input
-                  v-model="form.password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                />
-              </div>
-              <div>
-                <button type="submit">Login</button>
-              </div>
-              <div>
-                <router-link to="/signup">SignUp</router-link>
-              </div>
-            </form>
+        <div class="flex flex-col items-center md:w-3/6">
+          <div class="md:w-1/2">
+            <div>Try it free 7 days then $20/mo. thereafter</div>
+            <div class="bg-white">
+              <form @submit.prevent="handleSubmit">
+                <div>
+                  <label for="email">Email</label>
+                  <input
+                    v-model="form.email"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div>
+                  <label for="password">Password</label>
+                  <input
+                    v-model="form.password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                </div>
+                <div>
+                  <button type="submit">Login</button>
+                </div>
+                <div>
+                  <router-link to="/signup">SignUp</router-link>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
