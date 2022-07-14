@@ -3,41 +3,41 @@
     <div class="h-full login">
       <div class="flex flex-col md:flex-row items-center h-full z-20">
         <div class="flex justify-center text-white  md:w-3/6">
-          <div class="md:w-1/2">
-            <div class="flex flex-col md:text-5xl font-bold">
+          <div class="md:w-2/3">
+            <div class="flex flex-col md:text-5xl font-bold mb-6">
               <span>Learn to Code by</span> <span>Watching others</span>
             </div>
-            <div class="text-lg">
+            <div class="text-lg font-medium">
               <span>
                 See how experienced developers solve problems in real-time.
               </span>
-              <span>scripted tutorials is great, but understanding how</span>
+              <span>scripted tutorials is great, but understanding how </span>
               <span>developers think is invaluable</span>
             </div>
           </div>
         </div>
 
         <div class="flex flex-col items-center md:w-3/6">
-          <div class="md:w-1/2">
+          <div class="md:w-2/3">
             <div>Try it free 7 days then $20/mo. thereafter</div>
-            <div class="bg-white">
+            <div class="bg-white p-8">
               <form @submit.prevent="handleSubmit">
                 <div>
-                  <label for="email">Email</label>
                   <input
                     v-model="form.email"
                     type="email"
                     name="email"
                     placeholder="Email"
+                    class="h-12 w-full"
                   />
                 </div>
                 <div>
-                  <label for="password">Password</label>
                   <input
                     v-model="form.password"
                     type="password"
                     name="password"
                     placeholder="Password"
+                    class="h-12 w-full"
                   />
                 </div>
                 <div>
