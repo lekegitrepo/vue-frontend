@@ -29,6 +29,15 @@
               <form @submit.prevent="handleSubmit">
                 <div class="py-2">
                   <input
+                    v-model="form.userName"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    class="h-12 w-full rounded"
+                  />
+                </div>
+                <div class="py-2">
+                  <input
                     v-model="form.email"
                     type="email"
                     name="email"
@@ -46,17 +55,25 @@
                   />
                 </div>
                 <div class="py-2">
+                  <input
+                    v-model="form.password_confirmation"
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password Confirmation"
+                    class="h-12 w-full rounded"
+                  />
+                </div>
+                <div class="py-2">
                   <button
                     type="submit"
                     class="w-full bg-green-400 h-12 text-white rounded-md"
                   >
-                    Login
+                    Sign Up
                   </button>
                 </div>
                 <div class="py-4 text-blue-500">
-                  <router-link to="/signup"
-                    >New user? click here to SignUp</router-link
-                  >
+                  <span>Already has an account? </span>
+                  <router-link to="/login">click here to Login</router-link>
                 </div>
               </form>
             </div>
@@ -69,34 +86,31 @@
 
 <script>
 export default {
-  data: function() {
+  data() {
     return {
       form: {
+        userName: "",
         email: "",
         password: "",
+        password_confirmation: "",
       },
     };
-  },
-  created() {
-    this.checkSignIn();
-  },
-  updated() {
-    this.checkSignIn();
   },
   methods: {
     handleSubmit() {
       this.$http.plain
-        .post("/signin", {
+        .post("api/users", {
           email: this.form.email,
           password: this.form.password,
+          password_confirmation: this.form.password_confirmation,
         })
-        .then((response) => this.signinSuccessful(response))
-        .catch((error) => this.signinFailed(error));
+        .then((response) => this.signInSuccessful(response))
+        .catch((error) => this.signInFailed(error));
     },
 
-    signinSuccessful(response) {
+    signInSuccessful(response) {
       if (!response.data.csrf) {
-        this.signinFailed(response);
+        this.signInFailed(response);
         return;
       }
       localStorage.csrf = response.data.csrf;
@@ -105,14 +119,14 @@ export default {
       this.$router.replace("/coders");
     },
 
-    signinFailed(error) {
+    signInFailed(error) {
       //this.error = (error.response && error.response.data && error.response.data.error) || ''
       console.log(error);
       delete localStorage.csrf;
       delete localStorage.signedIn;
     },
 
-    checkSignIn() {
+    checksignIn() {
       if (localStorage.signedIn) {
         this.$router.replace("/coders");
       }
