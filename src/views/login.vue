@@ -20,7 +20,7 @@
         <div class="flex flex-col items-center md:w-3/6">
           <div class="md:w-2/3">
             <div
-              class="p-4 mb-3 bg-purple-800 rounded-lg text-center text-white"
+              class="p-4 mb-3 bg-purple-800 rounded-lg text-center text-white shadow-xl"
             >
               <span class="font-bold">Try it free 7 days</span> then $20/mo.
               thereafter
@@ -33,7 +33,7 @@
                     type="email"
                     name="email"
                     placeholder="Email"
-                    class="h-12 w-full rounded"
+                    class="h-12 w-full rounded border border-gray-300 focus:border-gray-400"
                   />
                 </div>
                 <div class="py-2">
@@ -42,7 +42,7 @@
                     type="password"
                     name="password"
                     placeholder="Password"
-                    class="h-12 w-full rounded"
+                    class="h-12 w-full rounded border border-gray-300 focus:border-gray-400"
                   />
                 </div>
                 <div class="py-2">
