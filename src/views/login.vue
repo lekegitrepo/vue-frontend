@@ -33,7 +33,7 @@
                     type="email"
                     name="email"
                     placeholder="Email"
-                    class="h-12 w-full rounded border border-gray-300 focus:border-gray-400"
+                    class="h-12 w-full rounded border border-gray-300 focus:border-gray-900 focus:outline-none"
                   />
                 </div>
                 <div class="py-2">
@@ -42,7 +42,7 @@
                     type="password"
                     name="password"
                     placeholder="Password"
-                    class="h-12 w-full rounded border border-gray-300 focus:border-gray-400"
+                    class="h-12 w-full rounded border border-gray-300 focus:border-gray-900 focus:outline-none"
                   />
                 </div>
                 <div class="py-2">
